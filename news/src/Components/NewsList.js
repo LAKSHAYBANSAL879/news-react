@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FavouriteContext } from '../FavouriteContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const NewsList = ({ articles, loading, inFavoritesPage, removeFromFavourites }) => {
   const { addToFavourites, removeFromFavourites: remove } = useContext(FavouriteContext);
@@ -53,14 +54,9 @@ const NewsList = ({ articles, loading, inFavoritesPage, removeFromFavourites }) 
             <h3 className="text-xl font-semibold mb-2">{article.title}</h3>
             <p className="mb-2 text-gray-700">{article.description}</p>
             <div className='flex flex-row justify-around'>
-            <a
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              Read more
-            </a>
+            <Link to={`/article/${encodeURIComponent(article.title)}`} className="text-blue-500">
+            Read More
+          </Link>
             {!inFavoritesPage && (
               <button
                 onClick={() => handleAddToFavorites(article)}

@@ -7,9 +7,9 @@ import Country from './Components/Country';
 import { FavouriteProvider } from './FavouriteContext';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import BrowserRouter as Router and Routes
 import FavoritesPage from './Components/FavouritePage';
+import ArticleDetail from './Components/ArticleDetail';
 
-const API_KEY = '26142e7ebdda43f89b674e2db3c88eee';
-const BASE_URL = 'https://newsapi.org/v2';
+const BASE_URL = 'http://localhost:5000/api'; 
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -24,9 +24,9 @@ function App() {
     const fetchArticles = async () => {
       setLoading(true);
 
-      let url = `${BASE_URL}/top-headlines?apiKey=${API_KEY}&country=${country}&category=${category}&page=${currentPage}`;
+      let url = `${BASE_URL}/top-headlines?country=${country}&category=${category}&page=${currentPage}`;
       if (searchKeyword) {
-        url = `${BASE_URL}/everything?apiKey=${API_KEY}&q=${searchKeyword}&page=${currentPage}`;
+        url = `${BASE_URL}/everything?q=${searchKeyword}&page=${currentPage}`;
       }
 
       const response = await fetch(url);
@@ -68,6 +68,7 @@ function App() {
               </>
             } />
             <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/article/:title" element={<ArticleDetail articles={articles} />} />
           </Routes>
         </div>
       </Router>
