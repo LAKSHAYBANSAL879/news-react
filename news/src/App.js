@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import FavoritesPage from './Components/FavouritePage';
 import ArticleDetail from './Components/ArticleDetail';
 
-const BASE_URL = 'http://localhost:5000/api'; 
+const BASE_URL = 'https://news-react-ok3x.onrender.com/api'; 
 
 function App() {
   const [articles, setArticles] = useState([]);
